@@ -1,18 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
 
     tools:context=".NoteFragment">
-<FrameLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-    <!-- TODO: Update blank fragment layout -->
-
-    <TextView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Add your note here" />
+        android:layout_height="match_parent">
 
-</FrameLayout>
+        <EditText
+            android:id="@+id/editTitleText"
+
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+
+
+            android:ems="10"
+            android:hint="Title"
+            android:inputType="textShortMessage"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="0dp" />
+
+        <EditText
+            android:id="@+id/editContentText"
+            android:layout_height="wrap_content"
+            android:cursorVisible="true"
+            android:layout_marginTop="16dp"
+            android:background="@android:color/transparent"
+            android:ems="10"
+            android:hint="Content"
+            android:inputType="textMultiLine"
+            app:layout_constraintEnd_toEndOf="@+id/editTitleText"
+            app:layout_constraintStart_toStartOf="@+id/editTitleText"
+            app:layout_constraintTop_toBottomOf="@+id/editTitleText"
+            android:layout_width="0dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
