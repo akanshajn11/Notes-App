@@ -13,10 +13,23 @@
         <action
             android:id="@+id/action_mainFragment_to_noteFragment"
             app:destination="@id/noteFragment" />
+        <argument
+            android:name="Title"
+            app:argType="string" />
+        <argument
+            android:name="Content"
+            app:argType="string" />
+
     </fragment>
     <fragment
         android:id="@+id/noteFragment"
         android:name="com.example.notes.NoteFragment"
         android:label="fragment_note"
-        tools:layout="@layout/fragment_note" />
+        tools:layout="@layout/fragment_note" >
+        <action
+            android:id="@+id/action_noteFragment_to_mainFragment"
+            app:destination="@id/mainFragment"
+            app:popUpTo="@id/noteFragment" />
+
+    </fragment>
 </navigation>

@@ -35,9 +35,14 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="222dp"
-        android:layout_height="110dp"
-        android:text="Main Page - Your notes will be displayed here" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
+
+    <ListView
+        android:id="@+id/notesList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </FrameLayout>
 </layout>

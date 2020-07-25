@@ -5,6 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
+import com.example.notes.databinding.FragmentNoteBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -28,13 +32,29 @@ class NoteFragment : Fragment() {
 //            param2 = it.getString(ARG_PARAM2)
 //        }
 //    }
+   // private lateinit var binding : FragmentNoteBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+    val    binding=DataBindingUtil.inflate<FragmentNoteBinding>(inflater,R.layout.fragment_note,container,false)
+
+
+
+
+        binding.doneButton.setOnClickListener  {view:View ->
+          view.findNavController().navigate(NoteFragmentDirections.actionNoteFragmentToMainFragment(binding.editTitleText.text.toString(), binding.editContentText.text.toString()))
+             //  getString(R.string.Title) ,getString(R.string.Content)))
+
+           // Toast.makeText(context,binding.editTitleText.text,Toast.LENGTH_LONG).show()
+
+           // view.findNavController().navigate(NoteFragmentDirections.actionNoteFragmentToMainFragment())
+
+        }
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_note, container, false)
+        //return inflater.inflate(R.layout.fragment_note, container, false)
+        return binding.root
     }
 
 //    companion object {
