@@ -12,7 +12,9 @@ import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.notes.databinding.FragmentMainBinding
+import kotlinx.android.synthetic.main.fragment_main.*
 import java.lang.Boolean.getBoolean
 
 
@@ -25,39 +27,30 @@ import java.lang.Boolean.getBoolean
  * Use the [MainFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class MainFragment : Fragment() {
+class MainFragment  : Fragment() {
 
 
-    private lateinit var listItems : ArrayList<String> //for list items
-   private lateinit var adapter : ArrayAdapter<String>
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-       // return inflater.inflate(R.layout.fragment_main, container, false)
+
 
         val binding  = DataBindingUtil.inflate<FragmentMainBinding>(inflater,R.layout.fragment_main,container,false)
 
-
-       var arg : Bundle? = arguments
+        var arg : Bundle? = arguments
 
         if (arg != null) {
-            var args=MainFragmentArgs.fromBundle(arguments!!)
-//            val notesList : ListView = binding.notesList
-           val text1 : TextView = binding.textView
-            text1.text=args.title
+          var args=MainFragmentArgs.fromBundle(arguments!!)
 
+            val notes = listOf<String>(args.title)
 
-//        val arrayAdapter: ArrayAdapter<*>
-//        val notes = arrayOf(args.title)
-//        val notesList : ListView = binding.notesList
-//
-//
-//        arrayAdapter= ArrayAdapter<String>(context!!, R.layout.fragment_main,notes)
-//
-//        notesList.adapter=arrayAdapter
+        val listView : ListView = binding.notesList
+
+        listView.adapter= ArrayAdapter(activity!!.applicationContext,android.R.layout.simple_list_item_1,notes)
+
 
         }
 
@@ -71,18 +64,7 @@ class MainFragment : Fragment() {
 
     }
 
-//    private fun getIntent() : Intent{
-//        var args=MainFragmentArgs.fromBundle(arguments!!)
-//
-//        val arrayAdapter: ArrayAdapter<*>
-//        val notes = arrayOf(args.title)
-//        val notesList : ListView = binding.notesList
-//
-//
-//        arrayAdapter= ArrayAdapter<String>(context!!, R.layout.fragment_main,notes)
-//
-//        notesList.adapter=arrayAdapter
-//    }
+
 
 
 }
