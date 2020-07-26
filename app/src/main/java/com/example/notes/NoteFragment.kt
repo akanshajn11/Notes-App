@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import com.example.notes.databinding.FragmentNoteBinding
+import kotlinx.android.synthetic.main.fragment_note.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,59 +22,26 @@ import com.example.notes.databinding.FragmentNoteBinding
  * create an instance of this fragment.
  */
 class NoteFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-//    private var param1: String? = null
-//    private var param2: String? = null
-
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        arguments?.let {
-//            param1 = it.getString(ARG_PARAM1)
-//            param2 = it.getString(ARG_PARAM2)
-//        }
-//    }
-   // private lateinit var binding : FragmentNoteBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-    val    binding=DataBindingUtil.inflate<FragmentNoteBinding>(inflater,R.layout.fragment_note,container,false)
 
-
-
-
-        binding.doneButton.setOnClickListener  {view:View ->
-          view.findNavController().navigate(NoteFragmentDirections.actionNoteFragmentToMainFragment(binding.editTitleText.text.toString(), binding.editContentText.text.toString()))
-             //  getString(R.string.Title) ,getString(R.string.Content)))
-
-           // Toast.makeText(context,binding.editTitleText.text,Toast.LENGTH_LONG).show()
-
-           // view.findNavController().navigate(NoteFragmentDirections.actionNoteFragmentToMainFragment())
-
+        val binding = DataBindingUtil.inflate<FragmentNoteBinding>(
+            inflater,
+            R.layout.fragment_note,
+            container,
+            false
+        )
+        val noteFactory = NoteFactory(context!!)
+        binding.doneButton.setOnClickListener { view: View ->
+            view.findNavController().navigate(
+                NoteFragmentDirections.actionNoteFragmentToMainFragment()
+            )
+            noteFactory.saveNote(binding.editTitleText.text.toString())
         }
-        // Inflate the layout for this fragment
-        //return inflater.inflate(R.layout.fragment_note, container, false)
         return binding.root
     }
 
-//    companion object {
-//        /**
-//         * Use this factory method to create a new instance of
-//         * this fragment using the provided parameters.
-//         *
-//         * @param param1 Parameter 1.
-//         * @param param2 Parameter 2.
-//         * @return A new instance of fragment NoteFragment.
-//         */
-//        // TODO: Rename and change types and number of parameters
-//        @JvmStatic
-//        fun newInstance(param1: String, param2: String) =
-//            NoteFragment().apply {
-//                arguments = Bundle().apply {
-//                    putString(ARG_PARAM1, param1)
-//                    putString(ARG_PARAM2, param2)
-//                }
-//            }
-//    }
 }
