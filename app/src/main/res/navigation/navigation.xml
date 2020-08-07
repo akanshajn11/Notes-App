@@ -23,6 +23,15 @@
             android:id="@+id/action_noteFragment_to_mainFragment"
             app:destination="@id/mainFragment"
             app:popUpTo="@id/noteFragment" />
+        <argument
+            android:name="title"
+            app:argType="string" />
+        <argument
+            android:name="content"
+            app:argType="string" />
+        <argument
+            android:name="position"
+            app:argType="integer" />
 
     </fragment>
 </navigation>

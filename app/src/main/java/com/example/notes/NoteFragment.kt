@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.text.set
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import com.example.notes.databinding.FragmentNoteBinding
@@ -35,11 +36,31 @@ class NoteFragment : Fragment() {
             false
         )
         val noteFactory = NoteFactory(context!!)
+
+        val args = NoteFragmentArgs.fromBundle(arguments!!)
+        if (args.title != "") {
+            binding.editTitleText.setText(args.title)
+            binding.editContentText.setText(args.content)
+        }
+
         binding.doneButton.setOnClickListener { view: View ->
             view.findNavController().navigate(
                 NoteFragmentDirections.actionNoteFragmentToMainFragment()
             )
-            noteFactory.saveNote(binding.editTitleText.text.toString())
+            if (args.title != "")
+                noteFactory.saveNote(
+                    Note(
+                        binding.editTitleText.text.toString(),
+                        binding.editContentText.text.toString()
+                    ), "Edit", args.position
+                )
+            else
+                noteFactory.saveNote(
+                    Note(
+                        binding.editTitleText.text.toString(),
+                        binding.editContentText.text.toString()
+                    ), "New", 0
+                )
         }
         return binding.root
     }
