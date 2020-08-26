@@ -4,8 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
-import java.sql.RowId
-import java.text.FieldPosition
+
 
 data class Note(var title: String, var content: String)
 
@@ -43,6 +42,14 @@ class NoteFactory(context: Context) {
         return getAllNotes()[index]
     }
 
+    fun deleteNote(pos: Int) {
+        val notes = getAllNotes().toMutableList()
+        notes.removeAt(pos)
+        val editor = sharedPreferences.edit()
+        val jsonString = gson.toJson(notes)
+        editor.putString(noteKey, jsonString)
+        editor.apply()
+    }
 
 }
 

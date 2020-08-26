@@ -1,18 +1,16 @@
 package com.example.notes
 
 import android.os.Bundle
-import android.provider.ContactsContract
-
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import com.example.notes.databinding.FragmentMainBinding
+
 
 class MainFragment : Fragment() {
 
@@ -20,6 +18,9 @@ class MainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        setHasOptionsMenu(true)
+        val toolbar: Toolbar = (activity as AppCompatActivity).findViewById(R.id.toolbar)
+        toolbar.title = "Notes"
 
         val binding = DataBindingUtil.inflate<FragmentMainBinding>(
             inflater,
