@@ -7,5 +7,12 @@
         android:title="delete"
         android:visible="false"
         app:showAsAction="always" />
+
+    <item
+        android:id="@+id/share_button"
+        android:icon="@drawable/ic_share_black_24dp"
+        android:title="share"
+        android:visible="false"
+        app:showAsAction="always" />
 </menu>
 

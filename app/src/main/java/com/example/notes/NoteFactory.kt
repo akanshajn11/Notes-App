@@ -1,7 +1,9 @@
 package com.example.notes
 
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
+import androidx.core.content.ContextCompat.startActivity
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 
@@ -49,6 +51,17 @@ class NoteFactory(context: Context) {
         val jsonString = gson.toJson(notes)
         editor.putString(noteKey, jsonString)
         editor.apply()
+    }
+
+    fun shareNote(args: NoteFragmentArgs, context: Context) {
+        val sendIntent: Intent = Intent().apply {
+            action = Intent.ACTION_SEND
+            putExtra(Intent.EXTRA_TEXT, args.title + "\n\n" + args.content)
+            type = "text/plain"
+        }
+
+        val shareIntent = Intent.createChooser(sendIntent, null)
+        startActivity(context, sendIntent, null)
     }
 
 }

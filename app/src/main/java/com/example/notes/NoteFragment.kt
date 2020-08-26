@@ -63,6 +63,7 @@ class NoteFragment : Fragment() {
 
     override fun onPrepareOptionsMenu(menu: Menu) {
         menu.findItem(R.id.delete_button).isVisible = true
+        menu.findItem(R.id.share_button).isVisible = true
         super.onPrepareOptionsMenu(menu)
     }
 
@@ -71,6 +72,10 @@ class NoteFragment : Fragment() {
             noteFactory.deleteNote(args.position)
             view!!.findNavController()
                 .navigate(NoteFragmentDirections.actionNoteFragmentToMainFragment())
+            true
+        }
+        R.id.share_button -> {
+            noteFactory.shareNote(args,context!!)
             true
         }
         else -> {
