@@ -7,7 +7,6 @@ import androidx.core.content.ContextCompat.startActivity
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 
-
 data class Note(var title: String, var content: String)
 
 class NoteFactory(context: Context) {
@@ -53,16 +52,24 @@ class NoteFactory(context: Context) {
         editor.apply()
     }
 
+    fun deleteSelectedNotes(positions: MutableList<Int>) {
+        val notes = getAllNotes().toMutableList()
+        for (pos in positions)
+            notes.removeAt(pos)
+        val editor = sharedPreferences.edit()
+        val jsonString = gson.toJson(notes)
+        editor.putString(noteKey, jsonString)
+        editor.apply()
+    }
+
     fun shareNote(args: NoteFragmentArgs, context: Context) {
         val sendIntent: Intent = Intent().apply {
             action = Intent.ACTION_SEND
             putExtra(Intent.EXTRA_TEXT, args.title + "\n\n" + args.content)
             type = "text/plain"
         }
-
         val shareIntent = Intent.createChooser(sendIntent, null)
         startActivity(context, sendIntent, null)
     }
-
 }
 
