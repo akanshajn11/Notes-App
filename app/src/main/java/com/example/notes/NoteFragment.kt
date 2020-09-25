@@ -24,7 +24,7 @@ class NoteFragment : Fragment() {
     ): View? {
 
         val toolbar: Toolbar = (activity as AppCompatActivity).findViewById(R.id.toolbar)
-        toolbar.title = "My Note"
+        toolbar.title = "Note"
 
         binding = DataBindingUtil.inflate<FragmentNoteBinding>(
             inflater,

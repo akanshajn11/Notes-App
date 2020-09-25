@@ -27,7 +27,7 @@ class MainFragment : Fragment() {
         setHasOptionsMenu(true)
 
         val toolbar: Toolbar = (activity as AppCompatActivity).findViewById(R.id.toolbar)
-        toolbar.title = "Notes"
+        toolbar.title = "My Notes"
 
         binding = DataBindingUtil.inflate<FragmentMainBinding>(
             inflater,
